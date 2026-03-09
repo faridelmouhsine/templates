@@ -1,0 +1,10 @@
+#!/bin/bash
+
+TAG_KEY="Analyst"
+TAG_VALUE="Farid"
+
+echo "Listing CxOne projects with tag $TAG_KEY:$TAG_VALUE"
+echo "---------------------------------------------------"
+
+cx project list --output json | jq -r \
+'.projects[] | select(.tags[]? | select(.key=="'"$TAG_KEY"'" and .value=="'"$TAG_VALUE"'")) | "\(.id)  \(.name)"'
