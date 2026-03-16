@@ -1,0 +1,8 @@
+Plusieurs findings XXE ont été remontés dans différentes classes (EntityBinder, PolicyFormulaBinder, FmkFactory, GEPackBinder, Registry), mais l’analyse montre que tous convergent vers la même logique de désérialisation XML dans la classe utilitaire Serializer.java via l’appel à unmarshal.
+
+Les sources identifiées correspondent à des FileInputStream, indiquant un chargement de fichiers XML depuis le système de fichiers local. À ce stade, aucune preuve ne montre que ces fichiers XML sont directement contrôlés par une entrée utilisateur ou par une source externe non fiable.
+
+
+L’exploitabilité dépend de l’origine réelle des fichiers XML. Si ceux-ci correspondent uniquement à des fichiers internes de configuration ou de registry chargés par l’application, le risque XXE est considéré comme non exploitable dans le contexte actuel.
+
+Néanmoins, il est recommandé de durcir le parser XML dans Serializer.java (désactivation des DTD et des entités externes) afin d’appliquer une approche de défense en profondeur.
