@@ -1,0 +1,6 @@
+curl -X POST https://eu-2.iam.checkmarx.net/auth/realms/axafrance/protocol/openid-connect/token --data "grant_type=refresh_token" --data "client_id=ast-app" --data "refresh_token="
+
+export CXONE_TOKEN=
+
+export CXONE_BASE_URL="https://eu-2.ast.checkmarx.net"
+
