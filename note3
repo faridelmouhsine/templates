@@ -1,8 +1,0 @@
-La donnée utilisateur issue des champs de saisie (TextBox.Text) est propagée dans l’objet request, puis transmise au service CancelMission.
-Les champs de réponse res.ErrorCode et res.ErrorMessage sont ensuite affichés dans l’interface via la propriété .Text de contrôles WebForms dans Site.Master.cs.
-
-Ce mode d’affichage peut conduire à l’interprétation de contenu HTML si les valeurs affichées contiennent du contenu non encodé.
-
-L’exploitabilité dépend du comportement du service backend : si res.ErrorMessage ou res.ErrorCode reprennent directement ou indirectement des valeurs contrôlées par l’utilisateur (par exemple MissionId, EsId ou Comments), alors un scénario de Reflected XSS serait possible.
-
-Conclusion : confirmation nécessaire sur le contenu réel des messages renvoyés par le service.
