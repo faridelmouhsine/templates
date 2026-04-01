@@ -4,3 +4,14 @@ export CXONE_TOKEN=
 
 export CXONE_BASE_URL="https://eu-2.ast.checkmarx.net"
 
+
+
+
+export CXONE_TOKEN="$(
+  curl -s -X POST "https://eu-2.iam.checkmarx.net/auth/realms/<realm>/protocol/openid-connect/token" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-urlencode "grant_type=refresh_token" \
+    --data-urlencode "client_id=ast-app" \
+    --data-urlencode "refresh_token=$CXONE_REFRESH_TOKEN" \
+  | jq -r '.access_token'
+)"
