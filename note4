@@ -1,5 +1,0 @@
-Plusieurs findings XSS remontés sur les écrans de simulation (EBCPINT3101, EBCPINT3103, EBCPINT3106, etc.) correspondent au même pattern applicatif : une donnée saisie côté interface est propagée dans un objet request, transmise à un service backend, puis des champs de réponse (res.ErrorCode / res.ErrorMessage) sont affichés via la propriété .Text dans Site.Master.cs.
-
-Ces occurrences partagent le même sink et la même logique métier. L’exploitabilité dépend du fait que le service backend réinjecte ou non des valeurs contrôlées par l’utilisateur dans les messages affichés.
-
-Conclusion : Confirmation nécessaire avec l’équipe de développement sur le contenu réel des messages retournés.
